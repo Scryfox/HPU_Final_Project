@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>potdora</artifactId>
+    <groupId>com.scryfox.app</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
   <groupId>com.scryfox.app</groupId>
-  <artifactId>potdora</artifactId>
+  <artifactId>potdora-model</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>potdora-base</name>
+  <name>potdora-model</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
-
-  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,11 +65,4 @@
       </plugins>
     </pluginManagement>
   </build>
-  <modules>
-    <module>potdora-model</module>
-    <module>potdora-web-api</module>
-    <module>potdora-controller</module>
-    <module>potdora-db-io</module>
-    <module>potdora-api</module>
-  </modules>
 </project>
