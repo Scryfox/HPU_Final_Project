@@ -8,10 +8,10 @@
   </parent>
 
   <groupId>com.potdora.app</groupId>
-  <artifactId>potdora-api</artifactId>
+  <artifactId>potdora-food2fork</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>potdora-api</name>
+  <name>potdora-food2fork</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

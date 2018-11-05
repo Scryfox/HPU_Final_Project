@@ -68,5 +68,6 @@
     <module>potdora-controller</module>
     <module>potdora-db-io</module>
     <module>potdora-api</module>
+    <module>potdora-food2fork</module>
   </modules>
 </project>

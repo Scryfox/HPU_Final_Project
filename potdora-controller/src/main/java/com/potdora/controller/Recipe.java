@@ -6,7 +6,7 @@ public interface Recipe {
 
     String getName();
 
-    LinkedList<IngredientInterface> getIngredientList();
+    LinkedList<Ingredient> getIngredientList();
 
     String getDirections();
 
