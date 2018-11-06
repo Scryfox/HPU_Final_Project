@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.scryfox.app.AppTest" time="0.003" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.scryfox.app.AppTest" time="0.051" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -7,7 +7,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/test-classes:/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/classes:/home/scryfox/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/scryfox/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-model/target/test-classes:/home/scryfox/Documents/Projects/Potdora/potdora-model/target/classes:/home/scryfox/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/scryfox/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/classes:"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
@@ -17,20 +17,20 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/surefire/surefirebooter2673668761638219756.jar /home/scryfox/Documents/Projects/Potdora/potdora-controller/target/surefire 2018-11-06T16-45-30_328-jvmRun1 surefire615657214171868740tmp surefire_02930013158364741660tmp"/>
-    <property name="surefire.test.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/test-classes:/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/classes:/home/scryfox/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/scryfox/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.java.command" value="/home/scryfox/Documents/Projects/Potdora/potdora-model/target/surefire/surefirebooter8655590958147315940.jar /home/scryfox/Documents/Projects/Potdora/potdora-model/target/surefire 2018-11-06T16-45-30_328-jvmRun1 surefire8609090828914380052tmp surefire_16685571230007393142tmp"/>
+    <property name="surefire.test.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-model/target/test-classes:/home/scryfox/Documents/Projects/Potdora/potdora-model/target/classes:/home/scryfox/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/scryfox/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/classes:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/scryfox"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-oracle/jre"/>
-    <property name="basedir" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller"/>
+    <property name="basedir" value="/home/scryfox/Documents/Projects/Potdora/potdora-model"/>
     <property name="file.separator" value="/"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller/target/surefire/surefirebooter2673668761638219756.jar"/>
+    <property name="surefire.real.class.path" value="/home/scryfox/Documents/Projects/Potdora/potdora-model/target/surefire/surefirebooter8655590958147315940.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
@@ -45,7 +45,7 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="java.version" value="1.8.0_181"/>
-    <property name="user.dir" value="/home/scryfox/Documents/Projects/Potdora/potdora-controller"/>
+    <property name="user.dir" value="/home/scryfox/Documents/Projects/Potdora/potdora-model"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="com.scryfox.app.AppTest" time="0"/>
+  <testcase name="shouldAnswerWithTrue" classname="com.scryfox.app.AppTest" time="0.003"/>
 </testsuite>
