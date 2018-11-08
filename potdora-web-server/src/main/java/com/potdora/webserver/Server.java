@@ -1,4 +1,4 @@
-package com.potdora.webapi;
+package com.potdora.webserver;
 
 import java.io.IOException;
 import java.io.OutputStream;
