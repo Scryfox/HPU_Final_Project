@@ -1,2 +1,2 @@
-com/potdora/webapi/Server$MyHandler.class
-com/potdora/webapi/Server.class
+com/potdora/webserver/Server.class
+com/potdora/webserver/Server$MyHandler.class
