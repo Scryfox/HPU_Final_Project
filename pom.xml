@@ -63,7 +63,6 @@
     </pluginManagement>
   </build>
   <modules>
-    <module>potdora-model</module>
     <module>potdora-web-server</module>
     <module>potdora-controller</module>
     <module>potdora-db-io</module>

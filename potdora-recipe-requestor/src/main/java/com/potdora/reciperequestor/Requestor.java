@@ -11,13 +11,18 @@ import java.util.HashMap;
 
 public class Requestor {
 
-    public static int requestRecipes() throws Exception {
+    static String apiID = "f01e1f45";
+    static String apiKey = "5dd82603bde909385aeb3b383b3da7a1";
+
+    public static int requestRecipes(String parameterString) throws Exception {
 
         // Build the request
-        URL url = new URL("http://example.com");
+        URL url = new URL(
+                "https://api.edamam.com/search?app_id=" + apiID + "&app_key=" + apiKey + "&" + parameterString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
         int status = 0;
+
         try {
             con.setRequestMethod("GET");
 

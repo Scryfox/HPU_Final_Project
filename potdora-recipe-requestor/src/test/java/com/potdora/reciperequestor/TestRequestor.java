@@ -10,7 +10,7 @@ public class TestRequestor {
     public void getStatus() {
 
         try {
-            responseCode = Requestor.requestRecipes();
+            responseCode = Requestor.requestRecipes("q=chicken");
         } catch (Exception e) {
             System.out.print(e);
         }
