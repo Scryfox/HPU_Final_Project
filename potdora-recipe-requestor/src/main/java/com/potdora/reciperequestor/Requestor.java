@@ -1,20 +1,16 @@
 package com.potdora.reciperequestor;
 
-import java.net.*;
-import java.io.DataOutputStream;
-import java.io.InputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
-import java.util.Map;
-import java.util.HashMap;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Requestor {
 
     static String apiID = "f01e1f45";
     static String apiKey = "5dd82603bde909385aeb3b383b3da7a1";
 
-    public static int requestRecipes(String parameterString) throws Exception {
+    public static String requestRecipes(String parameterString) throws Exception {
 
         // Build the request
         URL url = new URL(
@@ -22,6 +18,8 @@ public class Requestor {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
         int status = 0;
+
+        StringBuffer content = new StringBuffer();
 
         try {
             con.setRequestMethod("GET");
@@ -39,7 +37,6 @@ public class Requestor {
             // Read the response
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
-            StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
@@ -51,7 +48,7 @@ public class Requestor {
             con.disconnect();
         }
 
-        return status;
+        return content.toString();
 
     }
 
