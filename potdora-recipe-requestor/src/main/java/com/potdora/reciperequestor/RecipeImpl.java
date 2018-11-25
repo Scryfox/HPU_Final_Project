@@ -11,17 +11,15 @@ class RecipeImpl implements Recipe {
 
     LinkedList<Ingredient> ingredients = new LinkedList<>();
 
-    String directions = "";
-
     RecipeImpl(String name, LinkedList<Ingredient> ingredients, String directions) {
         this.name = name;
         this.ingredients = ingredients;
-        this.directions = directions;
     }
 
     @Override
     public String getName() {
         return null;
+
     }
 
     @Override
@@ -30,7 +28,7 @@ class RecipeImpl implements Recipe {
     }
 
     @Override
-    public String getDirections() {
+    public String getURL() {
         return null;
     }
 

@@ -20,7 +20,6 @@ public class Parser {
 
             String name = recipeJSON.getString("label");
 
-            System.out.println(name);
         }
 
         return recipes;

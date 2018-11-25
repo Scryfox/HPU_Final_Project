@@ -8,6 +8,6 @@ public interface Recipe {
 
     LinkedList<Ingredient> getIngredientList();
 
-    String getDirections();
+    String getURL();
 
 }
