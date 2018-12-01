@@ -23,4 +23,9 @@ class IngredientImpl implements Ingredient {
         return amountInGrams;
     }
 
+    @Override
+    public void setAmountInGrams(double amount) {
+        this.amountInGrams = amount;
+    }
+
 }

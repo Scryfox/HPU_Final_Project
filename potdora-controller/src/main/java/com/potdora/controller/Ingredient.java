@@ -6,4 +6,6 @@ public interface Ingredient {
 
     double getAmountInGrams();
 
+    void setAmountInGrams(double amount);
+
 }

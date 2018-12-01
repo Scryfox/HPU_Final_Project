@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.potdora.client.GUIController">
+   <children>
+      <VBox>
+         <children>
+            <Accordion prefHeight="400.0" prefWidth="271.0">
+              <panes>
+                <TitledPane animated="false">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                     <graphic>
+                        <HBox prefHeight="0.0" prefWidth="350.0">
+                           <children>
+                              <Label prefHeight="23.0" prefWidth="207.0" text="Recipe_Name" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Replace" />
+                              <Button mnemonicParsing="false" text="Delete" />
+                           </children>
+                        </HBox>
+                     </graphic>
+                </TitledPane>
+              </panes>
+            </Accordion>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="392.0" text="Add" />
+         </children>
+      </VBox>
+      <VBox prefHeight="400.0" prefWidth="243.0">
+         <children>
+            <TextField fx:id="userName"/>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" text="Login" onAction="#checkUserName"/>
+            <Region prefHeight="23.0" prefWidth="213.0" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" text="Generate List"  onAction="#createShoppingList"/>
+         </children>
+      </VBox>
+   </children>
+</HBox>
