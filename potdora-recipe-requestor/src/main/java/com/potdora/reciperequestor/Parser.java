@@ -12,9 +12,17 @@ public class Parser {
 
     public static LinkedList<Recipe> parseRecipes(String jsonString) {
 
+        System.out.println("PARSING RECIPES");
+
+        if (jsonString.isEmpty()) {
+            System.out.println("EMPTY STRING PASSED TO PARSER");
+        }
+
         JSONArray hits = new JSONObject(jsonString).getJSONArray("hits");
 
         LinkedList<Recipe> recipes = new LinkedList<>();
+
+        System.out.println("Hits: " + hits.length());
 
         for (int i = 0; i < hits.length(); i++) {
             LinkedList<Ingredient> ingredients = new LinkedList<>();
@@ -33,8 +41,16 @@ public class Parser {
                         ingredientJsonObject.getDouble("weight")));
             }
 
-            recipes.add(new RecipeImpl(name, ingredients, url));
+            RecipeImpl nextRecipe = new RecipeImpl(name, ingredients, url);
 
+            recipes.add(nextRecipe);
+
+        }
+
+        System.out.println("RECIPES: " + recipes.size());
+
+        for (int i = 0; i < recipes.size(); i++) {
+            System.out.println(recipes.get(i).getName());
         }
 
         return recipes;

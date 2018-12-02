@@ -15,6 +15,9 @@ public class Requestor {
         // Build the request
         URL url = new URL(
                 "https://api.edamam.com/search?app_id=" + apiID + "&app_key=" + apiKey + "&" + parameterString);
+
+        System.out.println(url.toString());
+
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
         int status = 0;
@@ -46,6 +49,10 @@ public class Requestor {
 
             // Close the connection
             con.disconnect();
+        }
+
+        if (status != 200) {
+            System.out.println("STATUS WAS NOT 200");
         }
 
         return content.toString();

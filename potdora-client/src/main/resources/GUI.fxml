@@ -9,25 +9,18 @@
    <children>
       <VBox>
          <children>
-            <Accordion prefHeight="400.0" prefWidth="271.0">
+            <Accordion prefHeight="400.0" prefWidth="271.0" fx:id="recipesAccordion">
               <panes>
-                <TitledPane animated="false">
+                <TitledPane animated="true">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                      <graphic>
-                        <HBox prefHeight="0.0" prefWidth="350.0">
-                           <children>
-                              <Label prefHeight="23.0" prefWidth="207.0" text="Recipe_Name" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Replace" />
-                              <Button mnemonicParsing="false" text="Delete" />
-                           </children>
-                        </HBox>
                      </graphic>
                 </TitledPane>
               </panes>
             </Accordion>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="392.0" text="Add" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="392.0" text="Add" fx:id="addButton" onAction="#addRecipe"/>
          </children>
       </VBox>
       <VBox prefHeight="400.0" prefWidth="243.0">

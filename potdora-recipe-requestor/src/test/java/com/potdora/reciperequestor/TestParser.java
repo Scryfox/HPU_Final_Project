@@ -33,7 +33,7 @@ public class TestParser {
     }
 
     @Test
-    public void testParserForRecipes() {
+    public void testParserForStaticRecipes() {
 
         try {
             Parser.parseRecipes(testJSON);
@@ -41,6 +41,25 @@ public class TestParser {
             System.err.println(e);
         }
 
+    }
+
+    @Test
+    public void testParserForRealRecipes() {
+        String json = "";
+
+        try {
+            json = Requestor.requestRecipes("q=chicken");
+            if (json.isEmpty()) {
+                System.out.println("JIJIJIJIJIJIJJIJIJ");
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+
+        }
+        if (json.isEmpty()) {
+            System.out.println("HEHEHEHEHEHEHEHEHEHEHEH");
+        }
+        Parser.parseRecipes(json);
     }
 
 }

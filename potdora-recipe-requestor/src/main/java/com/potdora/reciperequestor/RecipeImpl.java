@@ -11,25 +11,27 @@ class RecipeImpl implements Recipe {
 
     LinkedList<Ingredient> ingredients = new LinkedList<>();
 
-    RecipeImpl(String name, LinkedList<Ingredient> ingredients, String directions) {
+    String url = "";
+
+    RecipeImpl(String name, LinkedList<Ingredient> ingredients, String url) {
         this.name = name;
         this.ingredients = ingredients;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
 
     }
 
     @Override
     public LinkedList<Ingredient> getIngredientList() {
-        return null;
+        return ingredients;
     }
 
     @Override
     public String getURL() {
-        return null;
+        return url;
     }
 
 }

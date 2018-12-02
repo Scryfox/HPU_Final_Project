@@ -1,6 +1,9 @@
 package com.potdora.reciperequestor;
 
-import org.junit.*;
+import static org.junit.Assert.assertNotEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class TestRequestor {
 
@@ -18,6 +21,8 @@ public class TestRequestor {
 
     @Test
     public void testRequestorSuccess() {
+
+        assertNotEquals("", response);
 
     }
 
