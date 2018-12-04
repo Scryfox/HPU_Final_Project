@@ -3,6 +3,7 @@ package com.potdora.client;
 import java.util.LinkedList;
 
 import com.potdora.api.Retrieve;
+import com.potdora.controller.Ingredient;
 import com.potdora.controller.Recipe;
 
 import javafx.event.ActionEvent;
@@ -47,13 +48,17 @@ public class GUIController {
         recipeNameGUI.setPrefWidth(207);
 
         final Button deleteButton = new Button("Delete");
+        final Button replaceButton = new Button("Replace");
 
-        HBox recipeInternals = new HBox(recipeNameGUI, new Button("Replace"), deleteButton);
+        HBox recipeInternals = new HBox(recipeNameGUI, replaceButton, deleteButton);
 
         recipeInternals.setPrefHeight(0);
         recipeInternals.setPrefWidth(350);
 
+        Label recipeDetailsGUI = new Label(ingredientString(newRecipe.getIngredientList()));
+
         AnchorPane recipeBody = new AnchorPane();
+        recipeBody.getChildren().add(recipeDetailsGUI);
 
         TitledPane newRecipeGUI = new TitledPane(null, recipeBody);
 
@@ -72,6 +77,31 @@ public class GUIController {
             }
         });
 
+        replaceButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                TitledPane currentPane = (TitledPane) replaceButton.getParent().getParent().getParent();
+
+                Recipe newRecipe = Retrieve.randomRecipe();
+
+                String recipeName = newRecipe.getName();
+
+                HBox currentBar = (HBox) currentPane.getGraphic();
+
+                Label currentRecipeName = (Label) currentBar.getChildren().get(0);
+
+                currentRecipeName.setText(recipeName);
+
+                AnchorPane paneContent = (AnchorPane) currentPane.getContent();
+
+                Label recipeDetails = (Label) paneContent.getChildren().get(0);
+
+                recipeDetails.setText(ingredientString(newRecipe.getIngredientList()));
+
+                System.out.println("Replaced recipe");
+            }
+        });
+
     }
 
     @FXML
@@ -82,6 +112,20 @@ public class GUIController {
     @FXML
     public void checkUserName() {
         System.out.println(userName.getText());
+    }
+
+    String ingredientString(LinkedList<Ingredient> ingredients) {
+
+        String recipeDetails = "";
+
+        recipeDetails += "***Ingredients***\n\n";
+
+        for (int i = 0; i < ingredients.size(); i++) {
+            Ingredient curIngredient = ingredients.get(i);
+            recipeDetails += "* " + curIngredient.getName() + ": " + curIngredient.getAmountInGrams() + "\n";
+        }
+        return recipeDetails;
+
     }
 
 }
