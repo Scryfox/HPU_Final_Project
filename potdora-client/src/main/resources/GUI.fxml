@@ -17,7 +17,7 @@
             <TextField fx:id="userName" />
             <Button mnemonicParsing="false" onAction="#checkUserName" prefHeight="25.0" prefWidth="246.0" text="Login" />
             <Region prefHeight="23.0" prefWidth="213.0" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#createShoppingList" prefHeight="25.0" prefWidth="246.0" text="Generate List" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#createShoppingList" prefHeight="25.0" prefWidth="246.0" text="Generate List" fx:id="generateListButton"/>
          </children>
       </VBox>
    </children>

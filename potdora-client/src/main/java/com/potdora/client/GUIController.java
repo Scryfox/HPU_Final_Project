@@ -1,7 +1,11 @@
 package com.potdora.client;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 
+import com.potdora.api.Consolidate;
 import com.potdora.api.Retrieve;
 import com.potdora.controller.Ingredient;
 import com.potdora.controller.Recipe;
@@ -16,10 +20,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 
 public class GUIController {
 
-    LinkedList<TitledPane> recipes = new LinkedList<>();
+    LinkedList<Recipe> recipes = new LinkedList<>();
 
     @FXML
     public TextField userName;
@@ -32,6 +37,9 @@ public class GUIController {
 
     @FXML
     public Accordion recipesAccordion;
+
+    @FXML
+    public Button generateListButton;
 
     @FXML
     public void addRecipe() {
@@ -64,7 +72,7 @@ public class GUIController {
 
         newRecipeGUI.setGraphic(recipeInternals);
 
-        recipes.add(newRecipeGUI);
+        recipes.add(newRecipe);
 
         recipesAccordion.getPanes().add(newRecipeGUI);
 
@@ -72,6 +80,13 @@ public class GUIController {
             @Override
             public void handle(ActionEvent e) {
                 TitledPane currentPane = (TitledPane) deleteButton.getParent().getParent().getParent();
+                String currentRecipeName = ((Label) ((HBox) currentPane.getGraphic()).getChildren().get(0)).getText();
+                for (int i = 0; i < recipes.size(); i++) {
+                    if (currentRecipeName.equals(recipes.get(i).getName())) {
+                        recipes.remove(i);
+                        break;
+                    }
+                }
                 recipesAccordion.getPanes().remove(currentPane);
                 System.out.println("Removed recipe");
             }
@@ -106,6 +121,35 @@ public class GUIController {
 
     @FXML
     public void createShoppingList() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose were to save list");
+        File saveFile = fileChooser.showSaveDialog(generateListButton.getScene().getWindow());
+
+        if (saveFile == null) {
+            return;
+        }
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(saveFile);
+
+            // TODO: Generate stuff to write to file
+            String ingredientList = Consolidate.generateShoppingList(recipes);
+
+            fileWriter.append("***Ingredients*** \n\n");
+
+            fileWriter.append(ingredientList);
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
     }
 
