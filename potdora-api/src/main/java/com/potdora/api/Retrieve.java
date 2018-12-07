@@ -1,6 +1,8 @@
 package com.potdora.api;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -19,7 +21,29 @@ public class Retrieve {
         String recipeJSON = "";
 
         try {
-            recipeJSON = Requestor.requestRecipes("q=chicken");
+            // TODO: Pull random request type from file
+
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(Retrieve.class.getResourceAsStream("/queries.txt")));
+
+            LinkedList<String> queries = new LinkedList<>();
+
+            String nextLine = "";
+
+            while (true) {
+                nextLine = br.readLine();
+                if (nextLine == null) {
+                    break;
+                }
+                queries.add(nextLine);
+            }
+
+            Random rand = new Random();
+
+            int randomNum = rand.nextInt(queries.size());
+
+            recipeJSON = Requestor.requestRecipes("q=" + queries.get(randomNum));
+
         } catch (IOException e) {
             System.err.println("Site can't be reached");
             throw new IOException();
