@@ -30,7 +30,9 @@ public class Retrieve {
             System.exit(1);
         }
 
-        LinkedList<Recipe> recipes = Parser.parseRecipes(recipeJSON);
+        Parser recipeParser = new Parser();
+
+        LinkedList<Recipe> recipes = recipeParser.parseRecipes(recipeJSON);
 
         System.out.println("RECIPES PARSED");
 
@@ -48,7 +50,8 @@ public class Retrieve {
 
         // TODO: Base request string off of user preferences
         String recipeJSON = Requestor.requestRecipes("q=chicken");
-        LinkedList<Recipe> recipes = Parser.parseRecipes(recipeJSON);
+        Parser recipeParser = new Parser();
+        LinkedList<Recipe> recipes = recipeParser.parseRecipes(recipeJSON);
         return recipes.get(0);
 
     }

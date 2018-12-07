@@ -1,5 +1,8 @@
 package com.potdora.reciperequestor;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import com.potdora.controller.Ingredient;
@@ -10,9 +13,11 @@ import org.json.JSONObject;
 
 public class Parser {
 
-    public static LinkedList<Recipe> parseRecipes(String jsonString) {
+    public Parser() {
 
-        System.out.println("PARSING RECIPES");
+    }
+
+    public LinkedList<Recipe> parseRecipes(String jsonString) {
 
         if (jsonString.isEmpty()) {
             System.out.println("EMPTY STRING PASSED TO PARSER");
@@ -23,6 +28,33 @@ public class Parser {
         LinkedList<Recipe> recipes = new LinkedList<>();
 
         System.out.println("Hits: " + hits.length());
+        LinkedList<String> removableWords = new LinkedList<>();
+
+        try {
+
+            System.out.println("URL for file is : " + this.getClass().getResource("/removable_words.txt"));
+
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(getClass().getResourceAsStream("/removable_words.txt")));
+
+            String nextLine = "";
+
+            while (true) {
+                nextLine = br.readLine();
+                if (nextLine == null) {
+                    break;
+                }
+                removableWords.add(nextLine);
+            }
+
+        } catch (Exception e) {
+            System.err.println("PROBLEM LOADING WORDS FILE");
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < removableWords.size(); i++) {
+            System.out.println("***" + removableWords.get(i) + "***");
+        }
 
         for (int i = 0; i < hits.length(); i++) {
             LinkedList<Ingredient> ingredients = new LinkedList<>();
@@ -37,20 +69,32 @@ public class Parser {
 
             for (int j = 0; j < ingredientsJSON.length(); j++) {
                 JSONObject ingredientJsonObject = (JSONObject) ingredientsJSON.get(j);
-                ingredients.add(new IngredientImpl(ingredientJsonObject.getString("text"),
-                        ingredientJsonObject.getDouble("weight")));
+                String[] rawIngredientNameParts = ingredientJsonObject.getString("text").split(" ");
+                String processedIngredientName = "";
+                int startOfGoodInput = 1;
+                for (int k = 1; k < rawIngredientNameParts.length; k++) {
+                    boolean done = false;
+                    for (int l = 0; l < removableWords.size(); l++) {
+                        if (rawIngredientNameParts[k].equals(removableWords.get(l))) {
+                            startOfGoodInput++;
+                            break;
+                        }
+                        done = true;
+                    }
+                    if (done)
+                        break;
+                }
+
+                processedIngredientName = String.join(" ",
+                        Arrays.copyOfRange(rawIngredientNameParts, startOfGoodInput, rawIngredientNameParts.length));
+
+                ingredients.add(new IngredientImpl(processedIngredientName, ingredientJsonObject.getDouble("weight")));
             }
 
             RecipeImpl nextRecipe = new RecipeImpl(name, ingredients, url);
 
             recipes.add(nextRecipe);
 
-        }
-
-        System.out.println("RECIPES: " + recipes.size());
-
-        for (int i = 0; i < recipes.size(); i++) {
-            System.out.println(recipes.get(i).getName());
         }
 
         return recipes;

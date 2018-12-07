@@ -1,9 +1,11 @@
 package com.potdora.reciperequestor;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +38,8 @@ public class TestParser {
     public void testParserForStaticRecipes() {
 
         try {
-            Parser.parseRecipes(testJSON);
+            Parser newParser = new Parser();
+            newParser.parseRecipes(testJSON);
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -59,7 +62,23 @@ public class TestParser {
         if (json.isEmpty()) {
             System.out.println("HEHEHEHEHEHEHEHEHEHEHEH");
         }
-        Parser.parseRecipes(json);
+
+        Parser newParser = new Parser();
+        newParser.parseRecipes(json);
+    }
+
+    @Test
+    public void testFileLoader() {
+
+        try {
+            File removableWordsFile = new File(Parser.class.getResource("/removable_words.txt").getFile());
+            BufferedReader br = new BufferedReader(new FileReader(removableWordsFile));
+            String testLine = br.readLine();
+            System.out.println(testLine);
+            Assert.assertEquals("TEST", testLine);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

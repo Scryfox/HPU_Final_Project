@@ -19,8 +19,14 @@ public class Consolidate {
                 for (int k = 0; k < consolidatedIngredients.size(); k++) {
                     if (curIngredient.getName().equals(consolidatedIngredients.get(k).getName())) {
                         exists = true;
+                        System.out.println(curIngredient.getName() + " already exists!");
+                        System.out.println("Before: " + curIngredient.getAmountInGrams());
+                        System.out.println("Before: " + consolidatedIngredients.get(k).getAmountInGrams());
+
                         consolidatedIngredients.get(k).setAmountInGrams(
                                 consolidatedIngredients.get(k).getAmountInGrams() + curIngredient.getAmountInGrams());
+
+                        System.out.println("After: " + consolidatedIngredients.get(k).getAmountInGrams());
                     }
 
                 }
@@ -36,7 +42,6 @@ public class Consolidate {
         }
 
         return result;
-        // TODO: Add support for generating shopping list
     }
 
 }
