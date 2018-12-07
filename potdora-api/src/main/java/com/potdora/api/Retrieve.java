@@ -1,5 +1,6 @@
 package com.potdora.api;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import com.potdora.reciperequestor.Requestor;
 
 public class Retrieve {
 
-    public static Recipe randomRecipe() {
+    public static Recipe randomRecipe() throws IOException {
 
         System.out.println("RANDOM RECIPE INBOUND");
 
@@ -19,6 +20,9 @@ public class Retrieve {
 
         try {
             recipeJSON = Requestor.requestRecipes("q=chicken");
+        } catch (IOException e) {
+            System.err.println("Site can't be reached");
+            throw new IOException();
         } catch (Exception e) {
             System.err.println("Requesting Recipes Failed");
             System.err.println(e);

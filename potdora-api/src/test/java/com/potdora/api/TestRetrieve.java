@@ -6,7 +6,6 @@ public class TestRetrieve {
 
     @Test
     public void testRecipeRetrieve() {
-        System.out.println(Retrieve.randomRecipe().getName());
     }
 
 }

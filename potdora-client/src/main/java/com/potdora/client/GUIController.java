@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -45,7 +47,11 @@ public class GUIController {
     public void addRecipe() {
 
         Recipe newRecipe = null;
-        newRecipe = Retrieve.randomRecipe();
+        try {
+            newRecipe = Retrieve.randomRecipe();
+        } catch (IOException IOe) {
+            new Alert(AlertType.INFORMATION, "No more than 5 recipes can be displayed per minute").showAndWait();
+        }
 
         String recipeName = newRecipe.getName();
 
@@ -97,7 +103,14 @@ public class GUIController {
             public void handle(ActionEvent e) {
                 TitledPane currentPane = (TitledPane) replaceButton.getParent().getParent().getParent();
 
-                Recipe newRecipe = Retrieve.randomRecipe();
+                Recipe newRecipe = null;
+
+                try {
+                    newRecipe = Retrieve.randomRecipe();
+                } catch (IOException IOe) {
+                    new Alert(AlertType.INFORMATION, "No more than 5 recipes can be displayed per minute")
+                            .showAndWait();
+                }
 
                 String recipeName = newRecipe.getName();
 
