@@ -76,6 +76,7 @@ public class TestParser {
             String testLine = br.readLine();
             System.out.println(testLine);
             Assert.assertEquals("TEST", testLine);
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,16 +2,16 @@ package com.potdora.dbio;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-public class TestAWSRDBConnector {
+public class TestDBFunctions {
 
-    @Test
-    public void testConnectToDB() {
+    @Before
+    public void setupDB() {
         try {
             Connection conn = AWSRDBConnector.connectToDB();
             System.out.println("Successfully connected to database!");
@@ -22,21 +22,27 @@ public class TestAWSRDBConnector {
 
             ps.executeUpdate();
             ps.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
 
-            Statement testQueryStatement = conn.createStatement();
+    @Test
+    public void testCheckIfUserExists() {
+        try {
+            Assert.assertTrue(DBFunctions.checkIfUserExists("TESTSQLUSER"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
 
-            ResultSet results = testQueryStatement.executeQuery("SELECT * FROM \"User\"");
-
-            boolean foundInsertedName = false;
-
-            while (results.next()) {
-                String nextName = results.getString("Name");
-                if (nextName.equals("TESTSQLUSER"))
-                    foundInsertedName = true;
-            }
-
-            Assert.assertTrue(foundInsertedName);
-
+    @After
+    public void cleanupDB() {
+        try {
+            Connection conn = AWSRDBConnector.connectToDB();
             PreparedStatement delps = conn
                     .prepareStatement("DELETE FROM \"User\" WHERE \"User\".\"Name\" = 'TESTSQLUSER'");
 

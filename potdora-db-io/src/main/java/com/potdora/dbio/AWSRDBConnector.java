@@ -3,7 +3,7 @@ package com.potdora.dbio;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-class AWSRDBConnector {
+public class AWSRDBConnector {
 
     // Driver String
     static String driver = "org.postgresql.Driver";
@@ -15,7 +15,7 @@ class AWSRDBConnector {
     static String userName = "Scryfox";
     static String password = "mario242";
 
-    public static Connection connectToDB() throws Exception {
+    static Connection connectToDB() throws Exception {
 
         // Set the driver for the DB
         Class.forName(driver);
