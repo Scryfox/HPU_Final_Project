@@ -39,6 +39,26 @@ public class TestDBFunctions {
         }
     }
 
+    @Test
+    public void testCheckIfRecipeExists() {
+        try {
+            Assert.assertFalse(DBFunctions.checkIfRecipeExists("TESTSQLUSER"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void testRecipeAdd() {
+        try {
+            DBFunctions.addRecipe("TESTRECIPE");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
     @After
     public void cleanupDB() {
         try {
@@ -48,6 +68,8 @@ public class TestDBFunctions {
 
             delps.executeUpdate();
             delps.close();
+
+            conn.createStatement().executeUpdate("DELETE FROM \"Recipe\" WHERE \"Recipe\".\"Name\" = 'TESTRECIPE'");
 
             conn.close();
         } catch (Exception e) {

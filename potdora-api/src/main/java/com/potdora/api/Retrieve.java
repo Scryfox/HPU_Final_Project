@@ -10,6 +10,7 @@ import java.util.Random;
 import com.potdora.controller.Ingredient;
 import com.potdora.controller.Recipe;
 import com.potdora.controller.ShoppingListBuilder;
+import com.potdora.dbio.DBFunctions;
 import com.potdora.reciperequestor.Parser;
 import com.potdora.reciperequestor.Requestor;
 
@@ -17,7 +18,7 @@ public class Retrieve {
 
     public static Recipe randomRecipe() throws IOException {
 
-        System.out.println("RANDOM RECIPE INBOUND");
+        System.out.println("RANDOM RECIPE INBOUND WITHOUT NAME");
 
         String recipeJSON = "";
 
@@ -74,9 +75,9 @@ public class Retrieve {
 
     }
 
-    public static Recipe randomRecipe(String userName) throws IOException {
+    public static Recipe randomRecipe(String userName) throws Exception {
 
-        System.out.println("RANDOM RECIPE INBOUND");
+        System.out.println("RANDOM RECIPE INBOUND WITH NAME");
 
         String recipeJSON = "";
 
@@ -98,9 +99,13 @@ public class Retrieve {
                 queries.add(nextLine);
             }
 
+            LinkedList<String> userPrefs = new LinkedList<>();
             if (!userName.isEmpty()) {
-                // TODO: Get user's preferences and add to list of options
+                // Get user's preferences and add to list of options
+                userPrefs = DBFunctions.getUserPreferences(userName);
             }
+
+            queries.addAll(userPrefs);
 
             Random rand = new Random();
 
@@ -134,13 +139,19 @@ public class Retrieve {
             System.out.println("There are no recipes");
         }
 
-        // TODO: Add recipe to database
-
-        // TODO: Add recipe ingredients to database
-
         Random rand = new Random();
 
-        return recipes.get(rand.nextInt(recipes.size()));
+        Recipe randomRecipe = recipes.get(rand.nextInt(recipes.size()));
+
+        // Add recipe to database
+        DBFunctions.addRecipe(randomRecipe.getName());
+
+        for (int i = 0; i < randomRecipe.getIngredientList().size(); i++) {
+            // Add recipe ingredients to database
+            DBFunctions.addIngredient(randomRecipe.getIngredientList().get(i).getName());
+        }
+
+        return randomRecipe;
 
     }
 
